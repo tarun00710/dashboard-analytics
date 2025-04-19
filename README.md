@@ -92,12 +92,6 @@ src/
 
 The dashboard uses pre-defined **mock data** in the `/data` directory to simulate API responses. These mock files include artificial delays to mimic real-world scenarios.
 
-### Examples:
-
-- `userStats.ts` → Daily active users, retention, growth
-- `revenueData.ts` → Monthly earnings, new subscriptions
-- `activityLog.ts` → System activities (login, signup)
-- `userTableData.ts` → List of users for table display
 
 > ⚠️ Data is mocked and fetched using artificial delays to simulate loading states. You can replace it with real API calls easily.
 
@@ -105,7 +99,6 @@ The dashboard uses pre-defined **mock data** in the `/data` directory to simulat
 
 ## 🛡️ Authentication
 
-- Authentication is handled using JWT tokens.
 - Auth state is stored in **Zustand** and persisted in **`localStorage`**.
 - Protected routes are wrapped in `<ProtectedLayout>` and redirect unauthenticated users to the login page.
 - Roles (e.g., `admin`, `user`) are also supported to control access.
