@@ -1,4 +1,3 @@
-// components/common/ProtectedLayout.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -8,16 +7,18 @@ import { useAuthStore } from '@/store/authStore';
 
 export const ProtectedLayout = ({
   children,
-  role, 
+  role,
 }: {
   children: React.ReactNode;
   role?: 'admin' | 'user';
 }) => {
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, user, hasHydrated } = useAuthStore();
   const router = useRouter();
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
+    if (!hasHydrated) return; 
+
     if (!isAuthenticated) {
       router.replace('/login');
     } else if (role && user?.role !== role) {
@@ -25,9 +26,9 @@ export const ProtectedLayout = ({
     } else {
       setChecking(false);
     }
-  }, [isAuthenticated, user, role, router]);
+  }, [isAuthenticated, user?.role, role, hasHydrated]);
 
-  if (checking) {
+  if (checking || !hasHydrated) {
     return <Spinner />;
   }
 

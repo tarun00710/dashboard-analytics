@@ -8,7 +8,7 @@ import { useAuthStore } from '@/store/authStore';
 
 export default function HomePage() {
   const router = useRouter();
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const {isAuthenticated} = useAuthStore();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -18,5 +18,5 @@ export default function HomePage() {
     }
   }, [isAuthenticated]);
 
-  return null; // Or a loading spinner
+  return null; 
 }

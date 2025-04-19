@@ -107,7 +107,7 @@ export async function signup(prev:any,formData: FormData): Promise<SignupRespons
     id: `${Date.now()}`,
     email: values.email,
     name: values.name,
-    role: 'user' // Default role for new users
+    role: 'user' 
   }
   
   return { 

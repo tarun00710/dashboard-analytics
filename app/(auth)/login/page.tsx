@@ -5,14 +5,14 @@ import { useEffect } from 'react'
 import { useActionState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { LoginResponse, User } from '@/types/types'
+import { LoginResponse } from '@/types/types'
 import { useAuthStore } from '@/store/authStore'
 import { login } from '@/action/auth'
 
 export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const setAuth = useAuthStore((state) => state.setAuth)
+  const {setAuth} = useAuthStore()
   
   const [state, formAction, pending] = useActionState<LoginResponse | undefined, FormData>(
     login, 
