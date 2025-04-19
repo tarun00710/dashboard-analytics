@@ -73,7 +73,7 @@ export function DashboardHeader() {
               {/* User dropdown menu */}
               {showUserMenu && (
                 <div
-                  className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:bg-gray-800 dark:ring-gray-700"
+                  className="origin-top-right absolute z-50 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:bg-gray-800 dark:ring-gray-700"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
