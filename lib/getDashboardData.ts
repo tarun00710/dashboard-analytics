@@ -1,6 +1,5 @@
 export async function getDashboardData() {
     try {
-      // In production, we need to handle the URL correctly
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
                      (typeof window !== 'undefined' ? window.location.origin : '');
       
