@@ -9,6 +9,7 @@ import UserTable from "@/component/table/Table";
 import { getDashboardData } from "@/lib/getDashboardData";
 import { Suspense } from "react";
 
+// eslint-disable-next-line
 async function ChartWithData({ ChartComponent }:{ChartComponent: React.ComponentType<{ data: any }>}) {
   const data = await getDashboardData();
   return <ChartComponent data={data} />;
