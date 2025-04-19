@@ -82,8 +82,7 @@ src/
 │   ├── constants.ts                 → Application-wide constants
 │   └── types.ts                     → Reusable TypeScript types and interfaces
 │
-├── data/                            → Mock data (user stats, activity logs, revenue etc.)
-├── api/                             → API logic or mock API routes (if needed)
+├── mocks/                            → Mock data (user stats, activity logs, revenue etc.)
 ├── public/                          → Static assets (images, logos, etc.)
 
 ```
