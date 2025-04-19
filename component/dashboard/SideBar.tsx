@@ -1,4 +1,3 @@
-// components/dashboard/ui/Sidebar.tsx
 'use client';
 
 import { usePathname } from 'next/navigation';
@@ -16,7 +15,7 @@ export default function Sidebar() {
   const { user } = useAuthStore();
   
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: BarChart2, current: pathname === '/dashboard',adminOnly: true },
+    { name: 'Dashboard', href: '/dashboard', icon: BarChart2, current: pathname === '/dashboard', adminOnly: true },
     { name: 'Profile', href: '/profile', icon: User, current: pathname === '/profile' },
     { name: 'Settings', href: '/setting', icon: Settings, current: pathname === '/setting' },
   ];
@@ -31,11 +30,11 @@ export default function Sidebar() {
 
   return (
     <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-      <div className="flex flex-col flex-grow border-r border-gray-200 bg-white overflow-y-auto">
-        <div className="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+      <div className="flex flex-col flex-grow border-r border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 overflow-y-auto">
+        <div className="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200 dark:border-gray-700">
           <Link href="/dashboard" className="flex items-center">
-            <Home className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-xl font-bold text-gray-900">Analytics</span>
+            <Home className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">Analytics</span>
           </Link>
         </div>
         <div className="mt-5 flex-grow flex flex-col">
@@ -48,8 +47,8 @@ export default function Sidebar() {
                   group flex items-center px-2 py-2 text-sm font-medium rounded-md
                   ${
                     item.current
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'bg-blue-50 text-blue-600 dark:bg-gray-700 dark:text-white'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                   }
                 `}
               >
@@ -58,8 +57,8 @@ export default function Sidebar() {
                     mr-3 flex-shrink-0 h-6 w-6
                     ${
                       item.current
-                        ? 'text-blue-600'
-                        : 'text-gray-400 group-hover:text-gray-500'
+                        ? 'text-blue-600 dark:text-blue-300'
+                        : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-500 group-hover:dark:text-white'
                     }
                   `}
                   aria-hidden="true"
@@ -69,11 +68,11 @@ export default function Sidebar() {
             ))}
           </nav>
         </div>
-        <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+        <div className="flex-shrink-0 flex border-t border-gray-200 dark:border-gray-700 p-4">
           <div className="flex items-center">
             <div>
-              <p className="text-sm font-medium text-gray-700">{user?.name}</p>
-              <p className="text-xs text-gray-500">{user?.role}</p>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{user?.name}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{user?.role}</p>
             </div>
           </div>
         </div>

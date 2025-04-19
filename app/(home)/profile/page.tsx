@@ -8,13 +8,13 @@ const Profile = () => {
 
   return (
     <Card title="Profile Info">
-      <p className="text-gray-700 mb-2">
+       <p className="text-gray-700 dark:text-gray-300 mb-2">
         <strong>Name:</strong> {user?.name}
       </p>
-      <p className="text-gray-700 mb-2">
+      <p className="text-gray-700 dark:text-gray-300 mb-2">
         <strong>Email:</strong> {user?.email}
       </p>
-      <p className="text-gray-700">
+      <p className="text-gray-700 dark:text-gray-300">
         <strong>Role:</strong> {user?.role}
       </p>
     </Card>

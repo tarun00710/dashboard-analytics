@@ -1,37 +1,7 @@
 // actions/auth.ts
 'use server'
 import { LoginResponse, SignupResponse, User } from '@/types/types';
-import { z } from 'zod'
-
-
-
-const mockUsers: User[] = [
-  {
-    id: '1',
-    email: 'admin@example.com',
-    name: 'Admin User',
-    role: 'admin'
-  },
-  {
-    id: '2',
-    email: 'user@example.com',
-    name: 'Regular User',
-    role: 'user'
-  }
-]
-
- const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters')
-})
-
-
-const signupSchemaObj = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
+import { loginSchema, mockUsers, signupSchemaObj } from '@/utils/constants';
 
 export async function login(prev:any,formData: FormData): Promise<LoginResponse> {
   await new Promise(resolve => setTimeout(resolve, 400))
