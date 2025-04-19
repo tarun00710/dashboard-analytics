@@ -1,12 +1,12 @@
-import Card from '@/component/card/Card';
-import ChartSkeleton from '@/component/card/CardSkeleton';
-import AreaChart from '@/component/charts/AreaChart';
-import BarChart from '@/component/charts/BarChart';
-import LineChartComponent from '@/component/charts/LineChart';
-import PieChart from '@/component/charts/PieChart';
-import { getDashboardData } from '@/lib/getDashboardData';
-import { Suspense } from 'react';
-
+import Card from "@/component/card/Card";
+import ChartSkeleton from "@/component/card/CardSkeleton";
+import AreaChart from "@/component/charts/AreaChart";
+import BarChart from "@/component/charts/BarChart";
+import LineChartComponent from "@/component/charts/LineChart";
+import PieChart from "@/component/charts/PieChart";
+import UserTable from "@/component/table/Table";
+import { getDashboardData } from "@/lib/getDashboardData";
+import { Suspense } from "react";
 
 async function LineChartWithData() {
   const data = await getDashboardData();
@@ -36,7 +36,7 @@ export default function DashboardPage() {
           <LineChartWithData />
         </Suspense>
       </Card>
-      
+
       <Card title="Revenue by Category">
         <Suspense fallback={<ChartSkeleton />}>
           <BarChartWithData />
@@ -54,6 +54,11 @@ export default function DashboardPage() {
           <AreaChartWithData />
         </Suspense>
       </Card>
+      <div className="col-span-1 md:col-span-2">
+        <Card title="User Data Table">
+          <UserTable />
+        </Card>
+      </div>
     </div>
   );
 }
