@@ -29,3 +29,9 @@ export type User = {
       confirmPassword?: string;
     };
   }
+  export interface DashboardData {
+    lineChart: { month: string; sales: number }[];
+    barChart: { category: string; revenue: number }[];
+    pieChart: {name:string;value:number}[];
+    areaChart: { day: string; visits: number }[];
+  }

@@ -23,7 +23,7 @@ export function Sidebar() {
     { name: 'Settings', href: '/dashboard/settings', icon: Settings, current: pathname === '/dashboard/settings' },
   ];
 
-  // Filter items based on user role
+  // Filter role check
   const filteredNavigation = navigation.filter(item => {
     if (item.adminOnly && user?.role !== 'admin') {
       return false;

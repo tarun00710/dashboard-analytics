@@ -1,0 +1,34 @@
+{
+  "lineChart": [
+    { "month": "Jan", "sales": 120 },
+    { "month": "Feb", "sales": 150 },
+    { "month": "Mar", "sales": 180 },
+    { "month": "Apr", "sales": 210 },
+    { "month": "May", "sales": 250 },
+    { "month": "Jun", "sales": 230 },
+    { "month": "Jul", "sales": 270 },
+    { "month": "Aug", "sales": 300 }
+  ],
+  "barChart": [
+    { "category": "Electronics", "revenue": 2000 },
+    { "category": "Books", "revenue": 1200 },
+    { "category": "Clothing", "revenue": 1800 },
+    { "category": "Home", "revenue": 1600 },
+    { "category": "Toys", "revenue": 900 }
+  ],
+  "pieChart": [
+    { "name": "Chrome", "value": 65 },
+    { "name": "Firefox", "value": 20 },
+    { "name": "Safari", "value": 10 },
+    { "name": "Edge", "value": 5 }
+  ],
+  "areaChart": [
+    { "day": "Monday", "visits": 100 },
+    { "day": "Tuesday", "visits": 130 },
+    { "day": "Wednesday", "visits": 90 },
+    { "day": "Thursday", "visits": 160 },
+    { "day": "Friday", "visits": 200 },
+    { "day": "Saturday", "visits": 220 },
+    { "day": "Sunday", "visits": 180 }
+  ]
+}
