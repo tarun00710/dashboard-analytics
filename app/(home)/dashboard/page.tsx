@@ -1,3 +1,4 @@
+// app/dashboard/page.jsx
 import Card from "@/component/card/Card";
 import ChartSkeleton from "@/component/card/CardSkeleton";
 import AreaChart from "@/component/charts/AreaChart";
@@ -9,52 +10,59 @@ import UserTable from "@/component/table/Table";
 import { getDashboardData } from "@/lib/getDashboardData";
 import { Suspense } from "react";
 
-// eslint-disable-next-line
-async function ChartWithData({ ChartComponent }:{ChartComponent: React.ComponentType<{ data: any }>}) {
+async function DashboardContent() {
   const data = await getDashboardData();
-  return <ChartComponent data={data} />;
-}
-
-export default function DashboardPage() {
+  console.log(data)
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+    <>
       <Card title="Monthly Sales">
         <ErrorBoundary fallback={<p className="text-red-500">Chart error!</p>}>
-          <Suspense fallback={<ChartSkeleton />}>
-            <ChartWithData ChartComponent={LineChartComponent} />
-          </Suspense>
+          <LineChartComponent data={data} />
         </ErrorBoundary>
       </Card>
-      
+
       <Card title="Revenue by Category">
         <ErrorBoundary fallback={<p className="text-red-500">Chart error!</p>}>
-          <Suspense fallback={<ChartSkeleton />}>
-            <ChartWithData ChartComponent={BarChart} />
-          </Suspense>
+          <BarChart data={data} />
         </ErrorBoundary>
       </Card>
-      
+
       <Card title="Browser Distribution">
         <ErrorBoundary fallback={<p className="text-red-500">Chart error!</p>}>
-          <Suspense fallback={<ChartSkeleton />}>
-            <ChartWithData ChartComponent={PieChart} />
-          </Suspense>
+          <PieChart data={data} />
         </ErrorBoundary>
       </Card>
-      
+
       <Card title="Daily Visits">
         <ErrorBoundary fallback={<p className="text-red-500">Chart error!</p>}>
-          <Suspense fallback={<ChartSkeleton />}>
-            <ChartWithData ChartComponent={AreaChart} />
-          </Suspense>
+          <AreaChart data={data} />
         </ErrorBoundary>
       </Card>
-      
       <div className="col-span-1 md:col-span-2">
         <Card title="User Data Table">
           <UserTable />
         </Card>
       </div>
+    </>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+      <Suspense fallback={
+        <>
+          <Card title="Monthly Sales"><ChartSkeleton /></Card>
+          <Card title="Revenue by Category"><ChartSkeleton /></Card>
+          <Card title="Browser Distribution"><ChartSkeleton /></Card>
+          <Card title="Daily Visits"><ChartSkeleton /></Card>
+          <div className="col-span-1 md:col-span-2">
+            <Card title="User Data Table"><ChartSkeleton /></Card>
+          </div>
+        </>
+      }>
+        <DashboardContent />
+      </Suspense>
     </div>
   );
 }
