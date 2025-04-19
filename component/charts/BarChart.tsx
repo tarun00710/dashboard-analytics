@@ -1,5 +1,5 @@
 'use client';
-import { DashboardData } from '@/types/types';
+import { DashboardData } from '@/utils/types';
 import { BarChart as RBarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function BarChart({data}:{data:DashboardData}) {

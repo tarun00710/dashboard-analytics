@@ -1,5 +1,5 @@
 "use client";
-import { DashboardData } from "@/types/types";
+import { DashboardData } from "@/utils/types";
 import {
   AreaChart as RAreaChart,
   Area,

@@ -1,5 +1,5 @@
 // store/useAuthStore.ts
-import { User } from '@/types/types'
+import { User } from '@/utils/types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 

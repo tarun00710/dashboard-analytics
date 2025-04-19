@@ -1,6 +1,6 @@
 // actions/auth.ts
 'use server'
-import { LoginResponse, SignupResponse, User } from '@/types/types';
+import { LoginResponse, SignupResponse, User } from '@/utils/types';
 import { loginSchema, mockUsers, signupSchemaObj } from '@/utils/constants';
 
 export async function login(prev:any,formData: FormData): Promise<LoginResponse> {

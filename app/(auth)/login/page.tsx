@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useActionState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { LoginResponse } from '@/types/types'
+import { LoginResponse } from '@/utils/types'
 import { useAuthStore } from '@/store/authStore'
 import { login } from '@/action/auth'
 
