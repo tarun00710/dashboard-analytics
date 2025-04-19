@@ -4,19 +4,26 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Settings, User, LogOut, Menu, X } from "lucide-react";
+import { User, LogOut, Menu, X } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "next/navigation";
 
 export function DashboardHeader() {
-  const { user, logout } = useAuthStore();
+  const { logout } = useAuthStore();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const router = useRouter()
+
+  const logoutHandler = () => {
+    setShowUserMenu(false);
+    logout();
+    router.push('/login')
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 z-10">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-
           <div className="flex items-center md:hidden">
             <button
               type="button"
@@ -37,7 +44,7 @@ export function DashboardHeader() {
           <div className="flex-1 flex items-center justify-center md:justify-start">
             <div className="hidden md:block">
               <h1 className="text-xl font-semibold text-gray-800">
-                 Dashboard
+                 Home
               </h1>
             </div>
           </div>
@@ -73,43 +80,10 @@ export function DashboardHeader() {
                   aria-labelledby="user-menu"
                 >
                   <div className="py-1" role="none">
-                    <div className="px-4 py-2 text-sm text-gray-700">
-                      <p className="font-medium">{user?.name}</p>
-                      <p className="text-gray-500">{user?.email}</p>
-                    </div>
-                  </div>
-                  <div className="py-1" role="none">
-                    <Link
-                      href="/dashboard/profile"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      <User
-                        className="mr-3 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      Profile
-                    </Link>
-                    <Link
-                      href="/dashboard/settings"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      <Settings
-                        className="mr-3 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      Settings
-                    </Link>
-                  </div>
-                  <div className="py-1" role="none">
                     <button
                       type="button"
                       className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      onClick={() => {
-                        setShowUserMenu(false);
-                        logout();
-                      }}
+                      onClick={logoutHandler}
                     >
                       <LogOut
                         className="mr-3 h-5 w-5 text-gray-400"

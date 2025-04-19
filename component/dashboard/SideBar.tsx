@@ -4,23 +4,21 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { 
-  BarChart2, 
-  Users, 
+  BarChart2,
   Settings, 
   User,
-  Home,
-  FileText
+  Home
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 
-export function Sidebar() {
+export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useAuthStore();
   
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: BarChart2, current: pathname === '/dashboard',adminOnly: true },
-    { name: 'Profile', href: '/dashboard/profile', icon: User, current: pathname === '/dashboard/profile' },
-    { name: 'Settings', href: '/dashboard/settings', icon: Settings, current: pathname === '/dashboard/settings' },
+    { name: 'Profile', href: '/profile', icon: User, current: pathname === '/profile' },
+    { name: 'Settings', href: '/setting', icon: Settings, current: pathname === '/setting' },
   ];
 
   // Filter role check
