@@ -12,7 +12,6 @@ import { Suspense } from "react";
 
 async function DashboardContent() {
   const data = await getDashboardData();
-  console.log(data)
   return (
     <>
       <Card title="Monthly Sales">
@@ -49,7 +48,7 @@ async function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 md:p-6">
       <Suspense fallback={
         <>
           <Card title="Monthly Sales"><ChartSkeleton /></Card>

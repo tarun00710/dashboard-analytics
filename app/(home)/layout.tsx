@@ -20,7 +20,7 @@ export default function DashboardLayout({
           <div className="h-16 border-b border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800">
             <DashboardHeader />
           </div>
-          <main className="flex-1 p-4 md:p-6 overflow-auto">
+          <main className="flex-1 p-2 md:p-6 overflow-auto">
             {children}
           </main>
         </div>
