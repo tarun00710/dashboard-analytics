@@ -3,21 +3,53 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LogOut, Menu, X } from "lucide-react";
+import { BarChart2, LogOut, Menu, Settings, User, X } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function DashboardHeader() {
   const { logout } = useAuthStore();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const logoutHandler = () => {
     setShowUserMenu(false);
     logout();
-    router.push('/login')
-  }
+    router.push("/login");
+  };
+
+  const pathname = usePathname();
+  const { user } = useAuthStore();
+
+  const navigation = [
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: BarChart2,
+      current: pathname === "/dashboard",
+      adminOnly: true,
+    },
+    {
+      name: "Profile",
+      href: "/profile",
+      icon: User,
+      current: pathname === "/profile",
+    },
+    {
+      name: "Settings",
+      href: "/setting",
+      icon: Settings,
+      current: pathname === "/setting",
+    },
+  ];
+
+  const filteredNavigation = navigation.filter((item) => {
+    if (item.adminOnly && user?.role !== "admin") {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <header className="bg-white border-b border-gray-200 z-10 dark:bg-gray-800 dark:border-gray-700">
@@ -43,7 +75,7 @@ export function DashboardHeader() {
           <div className="flex-1 flex items-center justify-center md:justify-start">
             <div className="hidden md:block">
               <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
-                 Home
+                Home
               </h1>
             </div>
           </div>
@@ -105,29 +137,36 @@ export function DashboardHeader() {
         }`}
         id="mobile-menu"
       >
-        <div className="px-4 py-3 space-y-1">
-          <Link
-            href="/dashboard/analytics"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-700"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            Dashboard
-          </Link>
-          <Link
-            href="/dashboard/users"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            Users
-          </Link>
-          <Link
-            href="/dashboard/settings"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            Settings
-          </Link>
-        </div>
+        {filteredNavigation.map((item) => (
+          <div className="px-4 py-3 space-y-1">
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`
+                group flex items-center px-2 py-2 text-sm font-medium rounded-md
+                ${
+                  item.current
+                    ? "bg-blue-50 text-blue-600 dark:bg-gray-700 dark:text-white"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+                }
+              `}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              <item.icon
+                className={`
+                    mr-3 flex-shrink-0 h-6 w-6
+                    ${
+                      item.current
+                        ? "text-blue-600 dark:text-blue-300"
+                        : "text-gray-400 group-hover:text-gray-500 dark:text-gray-500 group-hover:dark:text-white"
+                    }
+                  `}
+                aria-hidden="true"
+              />
+              <p>{item.name}</p>
+            </Link>
+          </div>
+        ))}
       </div>
     </header>
   );
